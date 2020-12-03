@@ -1,35 +1,32 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tpons <tpons@student.42.fr>                +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/03/28 17:07:43 by tpons             #+#    #+#              #
-#    Updated: 2020/12/02 12:47:22 by tpons            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = libasm.a
 
-SRCS = 
+SRCS =	ft_strlen.s
 
 OBJS = $(SRCS:.s=.o)
 
+INCLUDE = -L. -lasm
 
-$(NAME) : $(OBJS)
+FLAGS = -v -Wall -Wextra -Werror
 
+%.o	: %.s
+	nasm -f elf64 $< -o $@
+# Mac compil would've been nasm -f macho64 $< -o $@
 
-all : $(NAME)
+$(NAME): $(OBJS) 
+	ar rcs $(NAME) $(OBJS)
 
+all: $(NAME)
 
-test :
-
-
-clean :
+clean:
 	rm -f $(OBJS)
 
-fclean : clean
-	rm -f $(NAME)
+test: all
+	clang main.c -o test_libasm $(INCLUDE)
+	./test_libasm
 
-re : fclean all
+fclean: clean
+	rm -f $(NAME)
+	rm -f test_libasm
+	rm -f test
+
+re: fclean all
