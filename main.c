@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 16:27:03 by tpons             #+#    #+#             */
-/*   Updated: 2020/12/04 13:56:01 by tpons            ###   ########.fr       */
+/*   Updated: 2020/12/04 16:14:56 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,44 @@ void check_strcpy()
 	// printf("\n");
 }
 
+void check_strcmp()
+{
+	char *empty = "";
+	char *hello_world = "Hello world !";
+	char *hello_human = "Hello human !";
+	char *hello_world2 = "Hello world !";
+	
+	printf("\n================================\n");
+	printf("========== FT_STRCMP ===========\n");
+	printf("================================\n\n");
+	printf("%-20s: \"%s\"\n", "char *", hello_world);
+	printf("%-20s: \"%s\"\n", "compared to", hello_human);
+	printf("%-20s: \"%d\"\n", "libc", strcmp(hello_world, hello_human));
+	printf("%-20s: \"%d\"\n", "libasm", ft_strcmp(hello_world, hello_human));
+	printf("\n");
+	printf("%-20s: \"%s\"\n", "char *", hello_world);
+	printf("%-20s: \"%s\"\n", "compared to", hello_world2);
+	printf("%-20s: \"%d\"\n", "libc", strcmp(hello_world, hello_world2));
+	printf("%-20s: \"%d\"\n", "libasm", ft_strcmp(hello_world, hello_world2));
+	printf("\n");
+	printf("%-20s: \"%s\"\n", "char *", hello_world2);
+	printf("%-20s: \"%s\"\n", "compared to", empty);
+	printf("%-20s: \"%d\"\n", "libc", strcmp(hello_world2, empty));
+	printf("%-20s: \"%d\"\n", "libasm", ft_strcmp(hello_world2, empty));
+	printf("\n");
+
+	// ------- NULL = SEGFAULT
+	// printf("%-20s: \"%s\"\n", "char *", hello_world2);
+	// printf("%-20s: %s\n", "compared to", "NULL");
+	// printf("%-20s: \"%d\"\n", "libc", strcmp(NULL, hello_world2));
+	// printf("%-20s: \"%d\"\n", "libasm", ft_strcmp(NULL, empty));
+	// printf("\n");
+}
+
 int main()
 {
     check_strlen();
 	check_strcpy();
+	check_strcmp();
     return (0);
 }
