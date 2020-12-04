@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 16:27:03 by tpons             #+#    #+#             */
-/*   Updated: 2020/12/03 11:55:28 by tpons            ###   ########.fr       */
+/*   Updated: 2020/12/04 13:56:01 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,56 @@ void check_strlen()
 	// printf("\n");
 }
 
+void clear_buffer(char *buffer, int size)
+{
+	int i = 0;
+	while (i < size)
+		buffer[i++] = 0;
+}
+
+void check_strcpy()
+{
+	char buffer[30];
+	
+	char *empty = "";
+	char *hello_world = "Hello world !";
+	char *alphabet = "abcdefghijklmnopqrstuvwxyz";
+	
+	printf("\n================================\n");
+	printf("========== FT_STRCPY ===========\n");
+	printf("================================\n\n");
+	printf("%-20s: \"%s\"\n", "char []", empty);
+	printf("%-20s: \"%s\"\n", "libc", strcpy(buffer, empty));	
+	clear_buffer(buffer, 30);
+	printf("%-20s: \"%s\"\n", "libasm", ft_strcpy(buffer, empty));	
+	clear_buffer(buffer, 30);
+	printf("\n");
+	printf("%-20s: \"%s\"\n", "char []", hello_world);
+	printf("%-20s: \"%s\"\n", "libc", strcpy(buffer, hello_world));	
+	clear_buffer(buffer, 30);
+	printf("%-20s: \"%s\"\n", "libasm", ft_strcpy(buffer, hello_world));	
+	clear_buffer(buffer, 30);
+	printf("\n");
+	printf("%-20s: \"%s\"\n", "char []", alphabet);
+	printf("%-20s: \"%s\"\n", "libc", strcpy(buffer, alphabet));	
+	clear_buffer(buffer, 30);
+	printf("%-20s: \"%s\"\n", "libasm", ft_strcpy(buffer, alphabet));
+	clear_buffer(buffer, 30);
+	printf("\n");
+
+	// ------- NULL = SEGFAULT
+	// printf("%-20s: \"%s\"\n", "char []", alphabet);
+	// printf("%-20s: buffer[50]\n", "copy to");
+	// printf("%-20s: \"%s\"\n", "libc", strcpy(NULL, NULL));	
+	// clear_buffer(buffer, 30);
+	// printf("%-20s: \"%s\"\n", "libasm", ft_strcpy(NULL, NULL));
+	// clear_buffer(buffer, 30);
+	// printf("\n");
+}
+
 int main()
 {
     check_strlen();
+	check_strcpy();
     return (0);
 }
