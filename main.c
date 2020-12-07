@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 16:27:03 by tpons             #+#    #+#             */
-/*   Updated: 2020/12/07 16:24:31 by tpons            ###   ########.fr       */
+/*   Updated: 2020/12/07 16:29:00 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,51 @@ void check_read()
 	close(fd);
 }
 
+void check_strdup()
+{
+	char *hello_world = "Hello world !";
+	char *empty = "";
+	char *save;
+	char *save2;
+	
+	printf("\n================================\n");
+	printf("========== FT_STRDUP ===========\n");
+	printf("================================\n\n");
+	printf("%-20s: \"%s\"\n", "char *", hello_world);
+	save = strdup(hello_world);
+	printf("%-20s: \"%s\"\n", "libc", save);
+	free(save);
+	save = NULL;
+	save2 = ft_strdup(hello_world);
+	printf("%-20s: \"%s\"\n", "libasm", save2);
+	free(save2);
+	save2 = NULL;
+	printf("\n");
+
+	printf("%-20s: \"%s\"\n", "char *", empty);
+	save = strdup(empty);
+	printf("%-20s: \"%s\"\n", "libc", save);
+	free(save);
+	save = NULL;
+	save2 = ft_strdup(empty);
+	printf("%-20s: \"%s\"\n", "libasm", save2);
+	free(save2);
+	save2 = NULL;
+	printf("\n");
+
+	// ------- NULL = SEGFAULT
+	// printf("%-20s: NULL\n", "char *");
+	// save = strdup(NULL);
+	// printf("%-20s: \"%s\"\n", "libc", save);
+	// free(save);
+	// save = NULL;
+	// save2 = ft_strdup(NULL);
+	// printf("%-20s: \"%s\"\n", "libasm", save2);
+	// free(save2);
+	// save2 = NULL;
+	// printf("\n");
+}
+
 int main()
 {
     check_strlen();
@@ -218,5 +263,6 @@ int main()
 	check_strcmp();
 	check_write();
 	check_read();
+	check_strdup();
     return (0);
 }
