@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 16:27:03 by tpons             #+#    #+#             */
-/*   Updated: 2020/12/07 15:48:14 by tpons            ###   ########.fr       */
+/*   Updated: 2020/12/07 16:24:31 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,11 +152,71 @@ void check_write()
 	
 }
 
+void check_read()
+{
+	int fd = open("main.c", O_RDONLY);
+	char buff1[891];
+	int ret = 1;
+	printf("\n================================\n");
+	printf("========== FT_READ =============\n");
+	printf("================================\n\n");
+	printf("%-20s: \n", "header main.c | libc ");
+	ret = read(fd, buff1, 890);
+	buff1[ret] = 0;
+	printf("[return : %d]\n|%s|\n", ret, buff1);
+	printf("\n");
+	close(fd);
+	fd = open("main.c", O_RDONLY);
+	clear_buffer(buff1, 891);
+	printf("%-20s: \n", "header main.c | libasm ");
+	ret = ft_read(fd, buff1, 890);
+	buff1[ret] = 0;
+	printf("[return : %d]\n|%s|\n", ret, buff1);
+	printf("\n");
+	clear_buffer(buff1, 891);
+	close(fd);
+
+	fd = open("test", O_RDONLY);
+	printf("%-20s: \n", "file test | libc ");
+	ret = read(fd, buff1, 890);
+	buff1[ret] = 0;
+	printf("[return : %d]\n|%s|\n", ret, buff1);
+	printf("\n");
+	close(fd);
+	fd = open("test", O_RDONLY);
+	clear_buffer(buff1, 891);
+	printf("%-20s: \n", "file test | libasm ");
+	ret = ft_read(fd, buff1, 890);
+	buff1[ret] = 0;
+	printf("[return : %d]\n|%s|\n", ret, buff1);
+	printf("\n");
+	clear_buffer(buff1, 891);
+	close(fd);
+
+	fd = open("wrong", O_RDONLY);
+	printf("%-20s: \n", "wrong | libc ");
+	ret = read(fd, buff1, 890);
+	buff1[ret] = 0;
+	printf("[return : %d]\n|%s|\nError:|%s|\n", ret, buff1, strerror(errno));
+	printf("\n");
+	close(fd);
+	fd = open("wrong", O_RDONLY);
+	clear_buffer(buff1, 891);
+	printf("%-20s: \n", "wrong | libasm ");
+	ret = ft_read(fd, buff1, 890);
+	buff1[ret] = 0;
+	printf("[return : %d]\n|%s|\nError:|%s|\n", ret, buff1, strerror(errno));
+	printf("\n");
+	clear_buffer(buff1, 891);
+	close(fd);
+}
+
 int main()
 {
     check_strlen();
 	check_strcpy();
 	check_strcmp();
 	check_write();
+	check_read();
     return (0);
 }
