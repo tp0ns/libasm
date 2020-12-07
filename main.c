@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 16:27:03 by tpons             #+#    #+#             */
-/*   Updated: 2020/12/04 16:14:56 by tpons            ###   ########.fr       */
+/*   Updated: 2020/12/07 15:48:14 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,37 @@ void check_strcmp()
 	// printf("\n");
 }
 
+void check_write()
+{
+	char *hello_world = "Coucou\n";
+	char *empty = "";
+
+	printf("\n================================\n");
+	printf("========== FT_WRITE ============\n");
+	printf("================================\n\n");
+	printf("%-20s: \"%s\"\n", "char *", hello_world);
+	printf("%-20s: \"%zd\"\n", "libc", write(1, hello_world, 7));
+	// printf("\n");
+	printf("%-20s: \"%zd\"\n", "libasm", ft_write(1, hello_world, 7));
+	printf("\n");
+	printf("%-20s: \"%s\"\n", "char *", empty);
+	printf("%-20s: \"%zd\"\n", "libc", write(1, empty, 0));
+	// printf("\n");
+	printf("%-20s: \"%zd\"\n", "libasm", ft_write(1, empty, 0));
+	printf("\n");
+	printf("%-20s: \"%s\"\n", "char *", hello_world);
+	printf("%-20s: \"%zd\"\nError was :%s\n", "libc", write(-7, hello_world, 7), strerror(errno));
+	// printf("\n");
+	printf("%-20s: \"%zd\"\nError was :%s\n", "libasm", ft_write(1, NULL, 7), strerror(errno));
+	// printf("\n");
+	
+}
+
 int main()
 {
     check_strlen();
 	check_strcpy();
 	check_strcmp();
+	check_write();
     return (0);
 }
