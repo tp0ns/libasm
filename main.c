@@ -6,7 +6,7 @@
 /*   By: tpons <tpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 16:27:03 by tpons             #+#    #+#             */
-/*   Updated: 2020/12/07 16:29:00 by tpons            ###   ########.fr       */
+/*   Updated: 2020/12/14 10:52:34 by tpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void check_strcmp()
 	// printf("%-20s: \"%s\"\n", "char *", hello_world2);
 	// printf("%-20s: %s\n", "compared to", "NULL");
 	// printf("%-20s: \"%d\"\n", "libc", strcmp(NULL, hello_world2));
-	// printf("%-20s: \"%d\"\n", "libasm", ft_strcmp(NULL, empty));
+	// printf("%-20s: \"%d\"\n", "libasm", ft_strcmp(NULL, hello_world2));
 	// printf("\n");
 }
 
